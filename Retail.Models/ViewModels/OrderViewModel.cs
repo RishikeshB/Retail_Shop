@@ -8,29 +8,23 @@ namespace Retail.Models.ViewModels
 {
     public class OrderViewModel
     {
-        Guid ProductId;
-        string? ProductName;
-        int qty;
-        int price;
-        public Guid ProductsEntityIdentity
+        Guid ProductsEntityIdentity;
+        string? ProductsEntityName;
+        int ProductsEntityQty;
+        public Guid ProductId
         {
-            get { return ProductId; }
-            set { ProductId = value; }
+            get { return ProductsEntityIdentity; }
+            set { ProductsEntityIdentity = value; }
         }
-        public string ProductsEntityName
+        public string ProductName
         {
-            get { return ProductName; }
-            set { ProductName = value; }
+            get { return ProductsEntityName; }
+            set { ProductsEntityName = value; }
         }
-        public int ProductsEntityQty
+        public int Qty
         {
-            get { return qty; }
-            set { qty = value; }
-        }
-        public int ProductsEntityPrice
-        {
-            get { return price; }
-            set { price = value; }
+            get { return ProductsEntityQty; }
+            set { ProductsEntityQty = value; }
         }
     }
 }

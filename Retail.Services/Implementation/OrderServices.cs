@@ -37,7 +37,7 @@ namespace Retail.Services.Implementation
         }
         public void PostOrder(OrderViewModel order)
         {
-            var Products=_iProductRepository.GetProducts(order.ProductsEntityIdentity);
+            var Products=_iProductRepository.GetProducts(order.ProductId);
             var PostNewOrder=_mapper.Map<OrderEntity>(order);
             PostNewOrder.OrderId = Guid.NewGuid();
             PostNewOrder.ProductId = Products.Identity;
