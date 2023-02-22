@@ -6,7 +6,8 @@ namespace Retail.Repository
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        public DbSet<ProductsEntity> Products { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
 
     }
 }

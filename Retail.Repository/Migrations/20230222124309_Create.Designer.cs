@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Retail.Repository;
 
 #nullable disable
 
 namespace Retail.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230215014506_CreateDB")]
-    partial class CreateDB
+    [Migration("20230222124309_Create")]
+    partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +24,23 @@ namespace Retail.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Retail.Repository.Entity.ProductsEntity", b =>
+            modelBuilder.Entity("Retail.Repository.Entity.OrderEntity", b =>
+                {
+                    b.Property<Guid>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Retail.Repository.Entity.ProductEntity", b =>
                 {
                     b.Property<Guid>("Identity")
                         .ValueGeneratedOnAdd()
@@ -45,6 +62,17 @@ namespace Retail.Repository.Migrations
                     b.HasKey("Identity");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Retail.Repository.Entity.OrderEntity", b =>
+                {
+                    b.HasOne("Retail.Repository.Entity.ProductEntity", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

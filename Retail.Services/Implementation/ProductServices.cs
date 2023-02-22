@@ -4,53 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Retail.Repository;
-using Retail.Repository.Implementation;
 using Retail.Repository.Entity;
 using Retail.Services.Interface;
 using Retail.Models.ViewModels;
 using AutoMapper;
+using Retail.Repository.Interface;
 
 namespace Retail.Services.Implementation
 {
-    public class ProductServices : IproductServices
+    public class ProductServices : IProductServices
     {
-        private readonly ProductRepository _productRepository;
+        private readonly IProductRepository _iProductRepository;
         private readonly IMapper _mapper;
-        public ProductServices(ProductRepository productRepository, IMapper mapper)
+        public ProductServices(IProductRepository iProductRepository, IMapper mapper)
         {
-            _productRepository = productRepository;
+            _iProductRepository = iProductRepository;
             _mapper = mapper;
         }
-        public List<ProductViewModels> GetProductDetails()
+        public List<ProductViewModel> GetProductDetails()
         {
-            var ProductList = _productRepository.GetProducts();
-            List<ProductViewModels> productViewModels =_mapper.Map<List<ProductViewModels>>(ProductList); 
+            var ProductList = _iProductRepository.GetProducts();
+            List<ProductViewModel> productViewModels =_mapper.Map<List<ProductViewModel>>(ProductList); 
             return productViewModels;
         }
         
-        public ProductViewModels GetProductDetailsById(Guid Identity)
+        public ProductViewModel GetProductDetailsById(Guid Identity)
         {
-            ProductsEntity Product = _productRepository.GetProducts(Identity);
-            ProductViewModels ProductViewModel = _mapper.Map<ProductViewModels>(Product);
+            ProductEntity Product = _iProductRepository.GetProducts(Identity);
+            ProductViewModel ProductViewModel = _mapper.Map<ProductViewModel>(Product);
 
             return ProductViewModel;
         }
-        
-        public void AddProduct(ProductViewModels product)
+        public void AddProduct(ProductViewModel product)
         {
-            var ProductNewEntry = _mapper.Map<ProductsEntity>(product);
+            var ProductNewEntry = _mapper.Map<ProductEntity>(product);
             ProductNewEntry.Identity= Guid.NewGuid();
-            _productRepository.PostProducts(ProductNewEntry);
+            _iProductRepository.PostProducts(ProductNewEntry);
         }
-        public void PutProduct(Guid id, ProductViewModels product)
+        public void PutProduct(Guid id, ProductViewModel product)
         {
-            var ProductEditEntry = _mapper.Map<ProductsEntity>(product);
+            var ProductEditEntry = _mapper.Map<ProductEntity>(product);
             ProductEditEntry.Identity = id;
-            _productRepository.PutProduct(ProductEditEntry);
+            _iProductRepository.PutProduct(ProductEditEntry);
         }
         public void DeleteProduct(Guid Identity)
         {
-            _productRepository.DeleteProduct(Identity);
+            _iProductRepository.DeleteProduct(Identity);
         }
     }
 }

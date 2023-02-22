@@ -12,11 +12,11 @@ namespace Retail.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-            private readonly IproductServices _iproductservices;
+            private readonly IProductServices _iProductServices;
         private readonly ILogger _logger;
-            public ProductController(IproductServices productServices)
+            public ProductController(IProductServices productServices)
             {
-                _iproductservices = productServices;
+                _iProductServices = productServices;
                
             }
         /*
@@ -31,7 +31,7 @@ namespace Retail.API.Controllers
         [HttpGet("GetAllProducts")]
         public IActionResult GetAllProducts()
         {
-                return Ok(_iproductservices.GetProductDetails());
+                return Ok(_iProductServices.GetProductDetails());
            
             
         }
@@ -40,7 +40,7 @@ namespace Retail.API.Controllers
         public IActionResult Get(Guid Identity)
         {
            try { 
-                var productList = _iproductservices.GetProductDetailsById(Identity);
+                var productList = _iProductServices.GetProductDetailsById(Identity);
                 Console.WriteLine(productList.Qty);
                 //return OkObjectResult( { 'data': productList, 'status': "success"});
                 return Ok(productList);
@@ -53,22 +53,22 @@ namespace Retail.API.Controllers
         }
 
         [HttpPost("AddProduct")]
-        public void Post(ProductViewModels product)
+        public void Post(ProductViewModel product)
         {
-            _iproductservices.AddProduct(product);
+            _iProductServices.AddProduct(product);
         }
         // PUT api/<ValuesController>/5
         [HttpPut("PutProducts/{Identity}")]
-        public void Put(Guid Identity, ProductViewModels product)
+        public void Put(Guid Identity, ProductViewModel product)
         {
-            _iproductservices.PutProduct(Identity, product);
+            _iProductServices.PutProduct(Identity, product);
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("DeleteProduct/{Identity}")]
         public void Delete(Guid Identity)
         {
-            _iproductservices.DeleteProduct(Identity);
+            _iProductServices.DeleteProduct(Identity);
         }
     }
 }

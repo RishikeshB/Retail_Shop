@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Retail.Repository;
 using Retail.Repository.Implementation;
+using Retail.Repository.Interface;
 using Retail.Services.Implementation;
 using Retail.Services.Interface;
 
@@ -18,9 +19,11 @@ namespace Retail.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddTransient<IproductServices,ProductServices>();
-            builder.Services.AddTransient<ProductRepository>();
-            builder.Services.AddAutoMapper(typeof(ProductMapper));
+            builder.Services.AddTransient<IProductServices,ProductServices>();
+            builder.Services.AddTransient<IOrderServices,OrderServices>();
+            builder.Services.AddTransient<IProductRepository,ProductRepository>();
+            builder.Services.AddTransient<IOrderRepository,OrderRepository>();
+            builder.Services.AddAutoMapper(typeof(Repository.AutoMapper));
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             var app = builder.Build();
