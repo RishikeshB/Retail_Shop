@@ -16,6 +16,7 @@ namespace Retail.Repository.Entity
         public Guid ProductId { get; set; }
         [ForeignKey(nameof(ProductId))]
         public ProductEntity? Product { get; set; }
+        public int Qty { get; set; }
        
        
     }
