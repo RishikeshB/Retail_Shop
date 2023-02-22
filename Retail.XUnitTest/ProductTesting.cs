@@ -7,10 +7,10 @@ namespace Retail.XUnitTest
 {
     public class ProductTesting
     {
-        private readonly Mock<IproductServices> _productServicesMock;
+        private readonly Mock<IProductServices> _productServicesMock;
         public ProductTesting() 
         {
-            _productServicesMock= new Mock<IproductServices>();
+            _productServicesMock= new Mock<IProductServices>();
         }
         [Fact]
         public async Task GetProductDetails() 
@@ -21,11 +21,11 @@ namespace Retail.XUnitTest
             var response = productController.GetAllProducts();
             Assert.NotNull(response);
         }
-        private List<ProductViewModels> TestProductDetails()
+        private List<ProductViewModel> TestProductDetails()
         {
-            return new List<ProductViewModels>
+            return new List<ProductViewModel>
             {
-                new ProductViewModels()
+                new ProductViewModel()
                 {
                     Name= "Test",
                     Qty= 1,

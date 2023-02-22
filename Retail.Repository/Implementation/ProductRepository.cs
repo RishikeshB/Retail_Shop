@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Retail.Utilities;
 using System.Reflection;
+using Retail.Repository.Interface;
 
 namespace Retail.Repository.Implementation
 {
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly AppDbContext _appDbContext;
         public ProductRepository(AppDbContext appDbContext)
@@ -20,24 +21,24 @@ namespace Retail.Repository.Implementation
         }
        
        
-        public List<ProductsEntity> GetProducts()
+        public List<ProductEntity> GetProducts()
         {
             var ProductsList = _appDbContext.Products.ToList();
             return ProductsList;
         }
        
-       public ProductsEntity GetProducts(Guid id)
+       public ProductEntity GetProducts(Guid id)
        {
            var Product = _appDbContext.Products.FirstOrDefault(x => x.Identity == id);
             //if (Product == null) throw new NullReferenceException("Invalid Id");
            return Product;
        }
-       public void PostProducts(ProductsEntity ProductNewEntry)
+       public void PostProducts(ProductEntity ProductNewEntry)
        {
            _appDbContext.Products.Add(ProductNewEntry);
            _appDbContext.SaveChanges();
        }
-        public void PutProduct(ProductsEntity Product)
+        public void PutProduct(ProductEntity Product)
         {
 
             _appDbContext.Products.Update(Product);

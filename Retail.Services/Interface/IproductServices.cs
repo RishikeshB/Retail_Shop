@@ -7,12 +7,12 @@ using Retail.Models.ViewModels;
 
 namespace Retail.Services.Interface
 {
-    public interface IproductServices
+    public interface IProductServices
     {
-       List<ProductViewModels> GetProductDetails();
-        ProductViewModels GetProductDetailsById(Guid id);
-        void AddProduct(ProductViewModels product);
-        void PutProduct(Guid id, ProductViewModels product);
+       List<ProductViewModel> GetProductDetails();
+        ProductViewModel GetProductDetailsById(Guid id);
+        void AddProduct(ProductViewModel product);
+        void PutProduct(Guid id, ProductViewModel product);
         void DeleteProduct(Guid id);
     }
 }

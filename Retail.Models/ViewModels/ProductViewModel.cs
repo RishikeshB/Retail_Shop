@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Retail.Models.ViewModels
 {
-    public class ProductViewModels
+    public class ProductViewModel
     {
         String name;
         int qty;

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace Retail.Repository.Entity
 {
-    public class ProductsEntity
+    public class ProductEntity
     {
         [Key]
         public Guid Identity { get; set; }

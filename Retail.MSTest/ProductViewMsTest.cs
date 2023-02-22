@@ -11,11 +11,11 @@ namespace Retail.MSTest
     public class ProductViewMsTest
     {
         [TestMethod]
-        public ProductViewModels GetByName(string TestName)
+        public ProductViewModel GetByName(string TestName)
         {
-            List<ProductViewModels> productViewMsTests = new List<ProductViewModels>
+            List<ProductViewModel> productViewMsTests = new List<ProductViewModel>
             {
-                new ProductViewModels
+                new ProductViewModel
                 {
                     Name="Puma",
                     Qty=20,
@@ -23,7 +23,7 @@ namespace Retail.MSTest
                     Rating=9
                 }
             };
-            ProductViewModels product = productViewMsTests.FirstOrDefault(x=>x.Name==TestName);
+            ProductViewModel product = productViewMsTests.FirstOrDefault(x=>x.Name==TestName);
             return product;
         }
     }

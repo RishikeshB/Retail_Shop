@@ -11,7 +11,7 @@ namespace Retail.MSTest
             var Expected = "Puma";
             //Act
             ProductViewMsTest product = new();
-            ProductViewModels Actual = product.GetByName(Expected);
+            ProductViewModel Actual = product.GetByName(Expected);
             //Assert
             Assert.IsNotNull(Actual);
             Assert.AreEqual(Expected, Actual? .Name);
