@@ -20,11 +20,9 @@ namespace Retail.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddTransient<IProductServices,ProductServices>();
-            builder.Services.AddTransient<IOrderServices, OrderServices>();
-            builder.Services.AddTransient<ProductRepository>();
-            builder.Services.AddTransient<IProductRepository>();
-            builder.Services.AddTransient<OrderRepository>();
-            builder.Services.AddTransient<IOrderRepository>();
+            builder.Services.AddTransient<IOrderServices,OrderServices>();
+            builder.Services.AddTransient<IProductRepository,ProductRepository>();
+            builder.Services.AddTransient<IOrderRepository,OrderRepository>();
             builder.Services.AddAutoMapper(typeof(Repository.AutoMapper));
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

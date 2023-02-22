@@ -52,7 +52,7 @@ namespace Retail.Services.Implementation
         }
         public void DeleteOrder(Guid id)
         {
-            _iOrderRepository.DeleteOrder(Guid id);
+            _iOrderRepository.DeleteOrder(id);
         }
     }
 }
